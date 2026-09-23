@@ -98,3 +98,23 @@ podman-compose down -v
 ```
 
 Після видалення volume при наступному запуску `init.sql` буде виконано повторно.
+
+## Демонстрація роботи
+### Frontend
+Frontend доступний у браузері за адресою: 
+```bash
+http://localhost:8080
+```
+![]("https://github.com/user-attachments/assets/3f3a4b2d-47a0-4e09-b590-b56cece7380f")
+### Backend REST API
+Перевірка API:
+```bash
+curl http://localhost:3000/api/users
+```
+![]("https://github.com/user-attachments/assets/ebb36118-26a0-4e3f-9fe2-0f34edead1f1")
+### Запущені контейнери
+Перевірка запущених контейнерів:
+```bash
+podman ps
+```
+![]("https://github.com/user-attachments/assets/671f9159-a25a-4993-b49e-1a6b04dc74e1")
