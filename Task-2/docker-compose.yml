@@ -1,0 +1,28 @@
+services:
+  gateway:
+    build: ./gateway
+    ports:
+      - "${GATEWAY_PORT}:80"
+    depends_on:
+      service-a:
+        condition: service_healthy
+    networks:
+      - api-network
+
+  service-a:
+    build: ./service-a
+    environment:
+      SERVICE_PORT: ${SERVICE_PORT}
+    expose:
+      - ${SERVICE_PORT}
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:5000/info')"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+    networks:
+      - api-network
+
+networks:
+  api-network:
+    driver: bridge
